@@ -1,10 +1,12 @@
 # Hello Plex
 
-Nginx Reverse Proxy and Securing your application example.
+Nginx Reverse Proxy and Securing your application.
+
+For the example we use a dockerized Plex server (video server) as the reverse application.
 
 ## Prerequisites
 
-You need to have docker and docker-compose installed in your host machine.
+Docker and docker-compose has to be installed in your development environment.
 
 ## Usage:
 
@@ -22,8 +24,15 @@ docker-compose up --build
 
 3) Connect to your Plex server. 
 
-First connect must be to http://localhost/manage or https://localhost/manage.
+First connect must be done to http://localhost/manage or https://localhost/manage.
 
-Then you can access the server throught http://localhost or https://localhost
+Then you can access the server at http://localhost or https://localhost [^Nt1].
 
 Enjoy your Plex server!
+
+## Versions
+
+v1.0.0 HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
+
+## Notes 
+[^Nt1]: You can directly access the Plex server at http://localhost:32400 or https://localhost:32400 (without nginx, available or not). Although, for the sake of the example we configure nginx and the http://localhost or https://localhost availability (without port specification) proves the correct configuration.
