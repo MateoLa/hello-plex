@@ -4,9 +4,15 @@ Nginx Reverse Proxy and Securing your application.
 
 We use a dockerized Plex server (video server) as the reverse application to build the example.
 
+## Versions
+
+v1.0.0 - HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
+
+v1.1.0 
+
 ## Prerequisites
 
-Docker and docker-compose has to be installed in your development environment.
+v1.0.0 - Docker and docker-compose has to be installed in your development environment.
 
 ## Usage
 
@@ -30,9 +36,12 @@ Then you can access the server at http://localhost or https://localhost [^Nt1].
 
 Enjoy your Plex server!
 
-## Versions
+## Useful Commands
 
-v1.0.0 HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
+* Generate your own fullchain.pem and privkey.pem.
+```sh
+ssh -T git@github.com
+```
 
 ## Notes
 
