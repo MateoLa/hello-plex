@@ -45,4 +45,4 @@ openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -sha25
 
 ## Notes
 
-[^Nt1]: You can directly access the Plex server at http://localhost:32400 or https://localhost:32400 (with nginx service available or not). Although, for the sake of the example we configure nginx and the http://localhost or https://localhost availability (without port specification) proves the correct configuration.
+[^Nt1]: You can directly access the Plex server at ```http://localhost:32400 or https://localhost:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and the ```http://localhost or https://localhost``` availability (without port specification) proves the correct configuration.
