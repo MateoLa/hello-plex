@@ -27,7 +27,7 @@ services:
     container_name: nginx
     image: nginx:alpine
     environment:
-      - TZ: America/Montevideo
+      TZ: America/Montevideo
     ports:
       - '80:80'
       - '443:443'
