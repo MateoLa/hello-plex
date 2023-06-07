@@ -8,7 +8,7 @@ We use a dockerized Plex server (video server) as the reverse application to bui
 
 v1.0.0 - HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
 
-v1.1.0 - Use a different plex image source: plexinc/pms-docker.
+v1.1.0 - Use a different plex image: plexinc/pms-docker.
 
 ## Prerequisites
 
