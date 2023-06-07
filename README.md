@@ -8,7 +8,7 @@ We use a dockerized Plex server (video server) as the reverse application to bui
 
 v1.0.0 - HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
 
-v1.1.0 
+v1.1.0 - Use a different plex image source: plexinc/pms-docker.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Enjoy your Plex server!
 
 * Generate your own fullchain.pem and privkey.pem.
 ```sh
-ssh -T git@github.com
+openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -sha256 -days 3650 -nodes -subj "/C=XX/ST=stateName/L=cityName/O=companyName/OU=companySectionName/CN=Hostname"
 ```
 
 ## Notes
