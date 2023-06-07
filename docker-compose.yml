@@ -16,8 +16,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - VERSION=docker
-      - UMASK_SET=022 #optional
       - PLEX_CLAIM=claim-WBNK9rHLTT5fqgfZxbmX #optional
       - TZ=America/Montevideo
     networks:
