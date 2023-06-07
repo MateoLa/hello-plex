@@ -6,7 +6,7 @@ We use a dockerized Plex server (video server) as the reverse application to bui
 
 ## Versions
 
-v1.0.0 - HTTPS for local development: https://localhost. The example use a dockerized plex server as a reverse application.
+v1.0.0 - HTTPS for local development: ```https://localhost```. The example use a dockerized plex server as a reverse application.
 
 v1.1.0 - Use a different plex image: plexinc/pms-docker.
 
@@ -30,9 +30,9 @@ docker-compose up --build
 
 3) Connect to your Plex server. 
 
-The first connection must be done to http://localhost/manage or https://localhost/manage.
+The first connection must be done to ```http://localhost/manage or https://localhost/manage```
 
-Then you can access the server at http://localhost or https://localhost [^Nt1].
+Then you can access the server at ```http://localhost or https://localhost``` [^Nt1]
 
 Enjoy your Plex server!
 
