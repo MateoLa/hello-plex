@@ -45,34 +45,34 @@ git clone https://github.com/MateoLa/hello-plex.git
 
 Into hello-plex directory edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing ```<your-domain>``` and ```<www.your-domain>``` with your domain name.
 
-3) Http access and Acme Chalenge
+3) HTTP access and Acme Chalenge
 
-Into hello-plex run
+Configure nginx http access and ask certbot to answer the acme chalenge (this will install initial certificates in nginx image) to authenticate the domain. 
 
+Run
 ```bash
 docker compose -f docker-compose-init.yml up --build
 ```
+Test http access
 
-This initial compose will configure nginx http access and ask certbot to answer the acme chalenge which will get the initial certificates to authenticate the domain.
-
-4) Test http access going to ```http://your-domain```
-
-Get down the containers. 
+4) Get down the containers. 
 
 ```bash
 Cntl^ C
 docker compose -f docker-compose-init.yml down
 ```
 
-5) Once initial certificates are in place (within the nginx image) configure ssh access and regenerate the definitive certificates.
+5) Enable HTTPS 
+
+With initial certificates in place (within the nginx image) configure ssh and regenerate new certificates.[^Nt2]
 
 Run
 
 ```bash
-docker compose up --build -d
+docker compose up --build -d 
 ```
 
-You need to reload the webserver to load of the new certificates
+You need to reload the webserver to load the new certificates
 
 ```bash
 docker compose exec -it webserver nginx -s reload
@@ -80,7 +80,7 @@ docker compose exec -it webserver nginx -s reload
 
 6) Secure Connect to your Plex server. 
 
-Then you can access the server at ```http://your-domain or https://your-domain``` [^Nt2]
+Then you can access the server at ```http://your-domain or https://your-domain``` [^Nt3]
 
 (The first connection could be done to ```http://your-domain/manage or https://your-domain/manage```)
 
@@ -102,4 +102,6 @@ sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 
 
 [^Nt1]: Create the server ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Add the public key (content of file id_rsa.pub) to github ```SSH and GPG keys``` account settings.
 
-[^Nt2]: You can directly access the Plex server at ```http://localhost:32400 or https://localhost:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and the ```http://localhost or https://localhost``` availability (without port specification) proves the correct configuration.
+[^Nt2]: With nginx configured as a reverse proxy, the reverse application has to be up and running in orther to get up the nginx. Otherwise the nginx container will fall.
+
+[^Nt3]: You can directly access the Plex server at ```http://localhost:32400 or https://localhost:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and the ```http://localhost or https://localhost``` availability (without port specification) proves the correct configuration.
