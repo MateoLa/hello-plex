@@ -2,7 +2,7 @@
 
 Nginx Reverse Proxy and Securing your application.
 
-(Using a dockerized Plex server as the reverse application to build the example)
+(The example is built using a dockerized Plex server as the reverse application)
 
 ## Versions
 
