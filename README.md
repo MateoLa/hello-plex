@@ -49,7 +49,7 @@ docker compose -f docker-compose-init.yml up --build
 
 This initial compose file will configure nginx http access and ask certbot to answer the acme chalenge and get the initial certificates to authenticate the domain. 
 
-4) You could test http access going to ```http://your-domain```
+4) Test http access going to ```http://your-domain```
 
 Get down the containers. 
 
