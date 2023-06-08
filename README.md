@@ -49,7 +49,16 @@ docker compose -f docker-compose-init.yml up --build
 
 This initial compose file will configure nginx http access and ask certbot to answer the acme chalenge and get the initial certificates to authenticate the domain. 
 
-4) Once initial certificates are in place (within the nginx image) configure ssh access and regenerate the definitive certificates.
+4) You could test http access going to ```http://your-domain```
+
+Get down the containers. 
+
+```bash
+Cntl^ C
+docker compose -f docker-compose-init.yml down
+```
+
+5) Once initial certificates are in place (within the nginx image) configure ssh access and regenerate the definitive certificates.
 
 Run
 
@@ -57,7 +66,7 @@ Run
 docker compose up --build
 ```
 
-5) Connect to your Plex server. 
+6) Connect to your Plex server. 
 
 The first connection must be done to ```http://your-domain/manage or https://your-domain/manage```
 
