@@ -2,7 +2,7 @@
 
 Nginx Reverse Proxy and Securing your application.
 
-We use a dockerized Plex server (video server) as the reverse application to build the example.
+(Using a dockerized Plex server as the reverse application to build the example)
 
 ## Versions
 
@@ -26,7 +26,7 @@ v1.0.0 - HTTPS for local development at ```https://localhost```. The example use
 
 * Allow http and https traffic to the server. [^Nt2]
 
-## v2.0.0 Usage
+## Usage v2.0.0
 
 1) cd into any folder and clone this repo:
 
@@ -77,7 +77,7 @@ sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 
 [^Nt1]: Create the server ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Add the public key (content of file id_rsa.pub) to github ```SSH and GPG keys``` account settings.
 
 [^Nt2]: Enable http and https traffic.
-```sh
+```
 ufw allow http
 ufw allow https
 ```
