@@ -24,7 +24,12 @@ v1.0.0 - HTTPS for local development at ```https://localhost```. The example use
 
 * Your server (public host) has to have ssh access to github. [^Nt1]
 
-* Allow http and https traffic to the server. [^Nt2]
+* Enable http and https traffic to the server
+
+```
+ufw allow http
+ufw allow https
+```
 
 ## Usage v2.0.0
 
@@ -56,7 +61,7 @@ docker compose up --build
 
 The first connection must be done to ```http://localhost/manage or https://localhost/manage```
 
-Then you can access the server at ```http://localhost or https://localhost``` [^Nt3]
+Then you can access the server at ```http://localhost or https://localhost``` [^Nt2]
 
 Enjoy your Plex server!
 
@@ -76,10 +81,4 @@ sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 
 
 [^Nt1]: Create the server ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Add the public key (content of file id_rsa.pub) to github ```SSH and GPG keys``` account settings.
 
-[^Nt2]: Enable http and https traffic.
-```
-ufw allow http
-ufw allow https
-```
-
-[^Nt3]: You can directly access the Plex server at ```http://localhost:32400 or https://localhost:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and the ```http://localhost or https://localhost``` availability (without port specification) proves the correct configuration.
+[^Nt2]: You can directly access the Plex server at ```http://localhost:32400 or https://localhost:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and the ```http://localhost or https://localhost``` availability (without port specification) proves the correct configuration.
