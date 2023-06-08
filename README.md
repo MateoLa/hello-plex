@@ -39,7 +39,7 @@ ufw allow https
 git clone https://github.com/MateoLa/hello-plex.git
 ```
 
-2) Go into hello-plex directory and edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing <your-domain.com> and <www.your-domain.com> with the apropriate domain name.
+2) Go into hello-plex directory and edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing ```<your-domain.com> and <www.your-domain.com>``` with the apropriate domain name.
 
 3) Into hello-plex run
 
