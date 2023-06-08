@@ -59,9 +59,9 @@ docker compose up --build
 
 5) Connect to your Plex server. 
 
-The first connection must be done to ```http://localhost/manage or https://localhost/manage```
+The first connection must be done to ```http://your-domain/manage or https://your-domain/manage```
 
-Then you can access the server at ```http://localhost or https://localhost``` [^Nt2]
+Then you can access the server at ```http://your-domain or https://your-domain``` [^Nt2]
 
 Enjoy your Plex server!
 
