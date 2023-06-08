@@ -46,7 +46,7 @@ services:
       - certbot-certs:/etc/letsencrypt/:rw
     depends_on:
       - webserver
-    command: certonly --webroot --staging --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d <your-domain.com> -d <www.your-domain.com>
+    command: certonly --webroot --staging --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d <your-domain> -d <www.your-domain>
     networks:
       - hello-net
 
