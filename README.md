@@ -10,9 +10,13 @@ v1.0.0 - HTTPS for local development at ```https://localhost```. The example use
 
 v1.1.0 - Use a different plex image: plexinc/pms-docker.
 
+v2.0.0 - Secure a real domain using Certbot as CA.
+
 ## Prerequisites
 
 v1.0.0 - Docker and docker-compose has to be installed in your development environment.
+
+v2.0.0 - You must manage your own domain and a publicly accessible host where you can build your application.
 
 ## Usage
 
@@ -41,6 +45,11 @@ Enjoy your Plex server!
 * Generate your own fullchain.pem and privkey.pem.
 ```sh
 openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -sha256 -days 3650 -nodes -subj "/C=XX/ST=stateName/L=cityName/O=companyName/OU=companySectionName/CN=Hostname"
+```
+
+* Use openssl to create a dhparam.pem file:
+```sh
+sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 2048
 ```
 
 ## Notes
