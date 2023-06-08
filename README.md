@@ -63,7 +63,7 @@ docker compose -f docker-compose-init.yml down
 Run
 
 ```bash
-docker compose up --build
+docker compose up --build -d
 ```
 
 6) Connect to your Plex server. 

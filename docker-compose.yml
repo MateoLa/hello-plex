@@ -46,7 +46,7 @@ services:
       - certbot-certs:/etc/letsencrypt/:rw
     depends_on:
       - nginx
-    command: certonly --webroot --staging --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d <your-domain> -d <www.your-domain>
+    command: certonly --webroot --force-renewal --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d <your-domain> -d <www.your-domain>
     networks:
       - hello-net
 
