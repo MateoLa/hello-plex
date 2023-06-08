@@ -49,7 +49,7 @@ docker compose -f docker-compose-init.yml up --build
 
 This initial compose file will configure nginx http access and ask certbot to answer the acme chalenge and get the initial certificates to authenticate the domain. 
 
-4) Once initial certificates are in place (within nginx image) configure ssh access and regenerate the definitive certificates.
+4) Once initial certificates are in place (within the nginx image) configure ssh access and regenerate the definitive certificates.
 
 Run
 
