@@ -33,21 +33,27 @@ ufw allow https
 
 ## Usage v2.0.0
 
-1) cd into any folder and clone this repo:
+1) Clone repository 
+
+Into any folder run
 
 ```bash
 git clone https://github.com/MateoLa/hello-plex.git
 ```
 
-2) Go into hello-plex directory and edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing ```<your-domain>``` and ```<www.your-domain>``` with the apropriate domain name.
+2) Use the right domain
 
-3) Into hello-plex run
+Into hello-plex directory edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing ```<your-domain>``` and ```<www.your-domain>``` with your domain name.
+
+3) Http access and Acme Chalenge
+
+Into hello-plex run
 
 ```bash
 docker compose -f docker-compose-init.yml up --build
 ```
 
-This initial compose file will configure nginx http access and ask certbot to answer the acme chalenge and get the initial certificates to authenticate the domain. 
+This initial compose will configure nginx http access and ask certbot to answer the acme chalenge which will get the initial certificates to authenticate the domain.
 
 4) Test http access going to ```http://your-domain```
 
@@ -66,11 +72,17 @@ Run
 docker compose up --build -d
 ```
 
-6) Connect to your Plex server. 
+You need to reload the webserver to load of the new certificates
 
-The first connection must be done to ```http://your-domain/manage or https://your-domain/manage```
+```bash
+docker compose exec -it webserver nginx -s reload
+```
+
+6) Secure Connect to your Plex server. 
 
 Then you can access the server at ```http://your-domain or https://your-domain``` [^Nt2]
+
+(The first connection could be done to ```http://your-domain/manage or https://your-domain/manage```)
 
 Enjoy your Plex server!
 

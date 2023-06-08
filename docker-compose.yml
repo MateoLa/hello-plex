@@ -21,7 +21,7 @@ services:
     networks:
       - hello-net
 
-  nginx:
+  webserver:
     container_name: nginx
     image: nginx:alpine
     environment:
@@ -45,7 +45,7 @@ services:
       - certbot-acme:/var/www/letsencrypt/:rw
       - certbot-certs:/etc/letsencrypt/:rw
     depends_on:
-      - nginx
+      - webserver
     command: certonly --webroot --force-renewal --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d <your-domain> -d <www.your-domain>
     networks:
       - hello-net
