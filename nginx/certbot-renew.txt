@@ -1,0 +1,2 @@
+# m h dom mon dow    user    command
+0 5  * * *  ~/kingsmen/nginx/cron_job.sh
