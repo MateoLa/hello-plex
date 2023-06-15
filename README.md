@@ -1,6 +1,6 @@
 # Hello Plex
 
-Nginx Reverse Proxy and Securing your application.
+Nginx Reverse Proxy and SSL Securing your application with Certbot
 
 (The example is built using a dockerized Plex server as the reverse application)
 
@@ -24,19 +24,13 @@ v1.0.0 - HTTPS for local development at ```https://localhost```. The example use
 
 * Your server (public host) has to have ssh access to github. [^Nt1]
 
-* Enable http and https traffic to the server
-
-```
-ufw allow http
-ufw allow https
-```
+* Enable http and https traffic to the server  [^Nt12]
 
 ## Usage v2.0.0
 
-1) Clone repository 
+1) Login to your server and clone the repository 
 
 Into any folder run
-
 ```bash
 git clone https://github.com/MateoLa/hello-plex.git
 ```
@@ -102,8 +96,14 @@ sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 
 
 ## Notes
 
-[^Nt1]: Create the server ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Add the public key (content of file id_rsa.pub) to github ```SSH and GPG keys``` account settings.
+[^Nt1]: In your server create the ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Copy the public key (id_rsa.pub content) to github account settings in ```SSH and GPG keys```
 
-[^Nt2]: With nginx configured as a reverse proxy, the reverse application has to be up and running in orther to get up the nginx. Otherwise the nginx container will fall.
+[^Nt12]: On Debian or Ubuntu:
+```sh
+ufw allow http
+ufw allow https
+```
+
+[^Nt2]: With nginx configured as a reverse proxy, the reverse application has to be up and running to get up the nginx. Otherwise the nginx container will fall.
 
 [^Nt3]: You can directly access the Plex server at ```http://your-domain:32400 or https://your-domain:32400``` (with the nginx service available or not). Although, for the sake of the example we configure nginx and ```http://your-domain or https://your-domain``` availability (without port specification) proves the correct web server configuration.
