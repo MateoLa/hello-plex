@@ -1,0 +1,54 @@
+name: DigitalOcean CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy_via_ssh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: App CI Summary
+        run: |
+          echo "### Build your App over DigitalOcean Droplet! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- SSH to DO server" >> $GITHUB_STEP_SUMMARY
+          echo "- Overwrite the .env" >> $GITHUB_STEP_SUMMARY
+          echo "- Pull the repo" >> $GITHUB_STEP_SUMMARY
+          echo "- Update the running containers." >> $GITHUB_STEP_SUMMARY
+
+      - name: Checkout repo files    
+        uses: actions/checkout@v3
+
+      - name: CI Docker Application over DigitalOcean Droplet via SSH
+        uses: appleboy/ssh-action@v0.1.8
+        env:
+          TOKEN: ${{ secrets.GIT_TOKEN }}
+          DOTENV: ${{ secrets.DOT_ENV }}
+          DIRECTORY: ${{ github.event.repository.name }}
+        with:
+          host: ${{ secrets.DIGITALOCEAN_HOST }}
+          username: ${{ secrets.DIGITALOCEAN_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          envs: TOKEN, DOTENV, DIRECTORY
+          script: |
+            # Initialize Git
+            mkdir -p $DIRECTORY
+            cd $DIRECTORY
+            if [[ ! -e ".git" ]]; then
+              git init
+              git branch -m main
+              git remote add origin git@github.com:MateoLa/$DIRECTORY.git
+            fi
+            if [ "$DOTENV" != "" ]; then
+              echo -e "$DOTENV" > .env
+            fi
+            git pull origin main
+            docker compose -f ./docker-compose-init.yml up --build -d
+            docker compose -f ./docker-compose-nginx.yml up --build -d
+
+            docker compose up --build -d
+            docker compose exec -it app bundle exec rake db:create
+            docker compose exec -it app bundle exec rake db:migrate
+            docker image prune -f
