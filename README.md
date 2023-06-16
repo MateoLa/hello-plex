@@ -16,7 +16,11 @@ The example use a dockerized Plex server as the reverse application.
 
 ## Usage
 
-1) Login to your server and clone the repository 
+1) Use your own domain
+
+We recomend you clone the repo in your own account and edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` to replace all etniapagana.com ocurrences with your domain name.
+
+2) Login to your server and clone the repository 
 
 In any folder run:
 
@@ -24,9 +28,7 @@ In any folder run:
 git clone https://github.com/MateoLa/hello-plex.git
 ```
 
-2) Use your own domain
 
-Edit the files ```nginx/default.conf, nginx/nginx.conf, docker-compose-init.yml and docker-compose.yml``` replacing ```<your-domain>``` and ```<www.your-domain>``` with your domain name.
 
 3) HTTP access and Acme Chalenge
 
@@ -76,7 +78,7 @@ Enjoy your Plex server!
 Certbot certificates are valid for 90 days so we going to cron certificates renewal.
 
 ```sh
-cp cron-job /etc/cron.d
+cp nginx/cron-job /etc/cron.d
 ```
 
 ## Versioning
