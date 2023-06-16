@@ -1,0 +1,11 @@
+# SHELL=/bin/bash
+# PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# HOME=/
+
+MAILTO=mateo.laino@gmail.com
+# run-parts
+# m h dom mon dow    user    command
+0 5 * * *  root /home/mateo/kingsmen/nginx/certs-renew.sh
+
+MAILTO=""
+*/2 * * * *  root echo "Hello World" >/dev/null 2>&1

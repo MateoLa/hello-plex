@@ -2,7 +2,7 @@
 
 Configure nginx as a Reverse Proxy and SSL Secure your application with Certbot <br>
 Cron certificates renewal and email job results. <br>
-The example use a dockerized Plex server as a reverse application.
+The example use a dockerized Plex server as the reverse application.
 
 ## Prerequisites
 
@@ -67,13 +67,17 @@ docker compose exec -it webserver nginx -s reload
 
 Go to ```https://your-domain``` [^Nt3]
 
-(The first connection could be done to https://your-domain/manage```)
+(The first connection could be done to ```https://your-domain/manage```)
 
 Enjoy your Plex server!
 
 7) Certificates Renewal
 
-Certbot certificates are valid for 6 month so we going to cron certificates renewal.
+Certbot certificates are valid for 90 days so we going to cron certificates renewal.
+
+```sh
+cp cron-job /etc/cron.d
+```
 
 ## Versioning
 
@@ -103,6 +107,16 @@ docker rm $(docker ps -a -q)
 docker rmi $(docker images -a -q)
 docker volume rm $(docker volume ls -q)
 docker system prune --volumes
+```
+
+* Shell access to CertBot container
+```sh
+docker compose run --rm --entrypoint="/bin/sh" -it certbot
+```
+
+* Checking Certbot SSL certificates expiration date
+```sh
+docker compose run --rm --entrypoint="certbot certificates" -it certbot
 ```
 
 ## Notes
