@@ -1,32 +1,20 @@
 # Hello Plex
 
-Nginx Reverse Proxy and SSL Securing your application with Certbot
-
-(The example is built using a dockerized Plex server as the reverse application)
-
-## Versions
-
-v2.0.0 - Secure a real domain with Certbot as CA.
-
-v1.1.0 - Use a different plex image: plexinc/pms-docker.
-
-v1.0.0 - HTTPS for local development at ```https://localhost```. The example use a dockerized plex server as a reverse application.
+Configure nginx as a Reverse Proxy and SSL Secure your application with Certbot
+Cron certificates renewal and email job results.
+The example use a dockerized Plex server as a reverse application.
 
 ## Prerequisites
 
-#### v1.0.0
+* Docker and docker-compose has to be installed in your development environment.  (v1.0.0)
 
-* Docker and docker-compose has to be installed in your development environment.
+* You must own your own domain and a public host where you can build the application. Whatever DNS you use, point your domain to the server public ip address.  (v2.0.0)
 
-#### v2.0.0
+* Your server (public host) has to have ssh access to github. (v2.0.0) [^Nt1]
 
-* You must own your own domain and a public host where you can build the application. Whatever DNS you use, point your domain to the server public ip address.
+* Enable http and https traffic to the server.  (v2.0.0) [^Nt12]
 
-* Your server (public host) has to have ssh access to github. [^Nt1]
-
-* Enable http and https traffic to the server  [^Nt12]
-
-## Usage v2.0.0
+## Usage
 
 1) Login to your server and clone the repository 
 
@@ -87,6 +75,15 @@ Enjoy your Plex server!
 
 Certbot certificates are valid for 6 month so we going to cron certificates renewal.
 
+## Versioning
+
+v2.1.0 - Cron Certbot certificates renewal and email cron jobs results.
+
+v2.0.0 - Secure a real domain with Certbot.
+
+v1.1.0 - Use a different plex image: plexinc/pms-docker.
+
+v1.0.0 - HTTPS for local development at ```https://localhost```.
 
 ## Useful Commands
 
@@ -112,11 +109,7 @@ docker system prune --volumes
 
 [^Nt1]: In your server create the ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Copy the public key (id_rsa.pub content) to github account settings in ```SSH and GPG keys```
 
-[^Nt12]: On Debian or Ubuntu:
-```sh
-ufw allow http
-ufw allow https
-```
+[^Nt12]: On Debian or Ubuntu ```ufw allow http``` and ```ufw allow https```
 
 [^Nt2]: With nginx configured as a reverse proxy, the reverse application has to be up and running to get up the nginx. Otherwise nginx fail and the container will fall.
 
