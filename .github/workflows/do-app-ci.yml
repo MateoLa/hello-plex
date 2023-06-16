@@ -35,14 +35,19 @@ jobs:
           script: |
             # Create directory and Initialize Git
             if [[ ! -e $PROJECT ]]; then
-              git clone -b master --single-branch git@github.com:MateoLa/$PROJECT.git
-              cd $PROJECT
-              if [ "$DOTENV" != "" ]; then
-                echo -e "$DOTENV" > .env
-              fi
-              docker compose -f ./docker-compose-init.yml up --build -d
-              docker compose -f ./docker-compose-init.yml down
-              docker compose up --build -d
-              docker compose exec -it webserver nginx -s reload
-              docker image prune -f
+              git clone git@github.com:MateoLa/$PROJECT.git
             fi
+            cd $PROJECT
+
+            # Actualize .env
+            if [ "$DOTENV" != "" ]; then
+              echo -e "$DOTENV" > .env
+            fi
+            git pull origin main
+            docker compose -f ./docker-compose-init.yml up --build -d
+            docker compose -f ./docker-compose-nginx.yml up --build -d
+
+            docker compose up --build -d
+            docker compose exec -it app bundle exec rake db:create
+            docker compose exec -it app bundle exec rake db:migrate
+            docker image prune -f

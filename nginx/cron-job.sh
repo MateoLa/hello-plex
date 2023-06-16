@@ -8,5 +8,5 @@ else
 fi
  
 # renew certbot certificate
-docker-compose run --rm certbot
-docker-compose exec webserver nginx -s reload
+docker compose run --rm certbot
+docker compose exec webserver nginx -s reload
