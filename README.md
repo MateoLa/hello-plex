@@ -100,6 +100,14 @@ openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -sha25
 sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 2048
 ```
 
+* Remove Containers, Images and Volumes
+```sh
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -a -q)
+docker volume rm $(docker volume ls -q)
+docker system prune --volumes
+```
+
 ## Notes
 
 [^Nt1]: In your server create the ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Copy the public key (id_rsa.pub content) to github account settings in ```SSH and GPG keys```
