@@ -1,7 +1,7 @@
 # Hello Plex
 
-Configure nginx as a Reverse Proxy and SSL Secure your application with Certbot
-Cron certificates renewal and email job results.
+Configure nginx as a Reverse Proxy and SSL Secure your application with Certbot <br>
+Cron certificates renewal and email job results. <br>
 The example use a dockerized Plex server as a reverse application.
 
 ## Prerequisites
