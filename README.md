@@ -28,8 +28,6 @@ In any folder run:
 git clone https://github.com/MateoLa/hello-plex.git
 ```
 
-
-
 3) HTTP access and Acme Chalenge
 
 Configure nginx http access to your server and answer certbot's acme chalenge. This will install initial SSL certificates into the webserver image to authenticate the domain. 
@@ -78,7 +76,7 @@ Enjoy your Plex server!
 Certbot certificates are valid for 90 days so we going to cron certificates renewal.
 
 ```sh
-cp nginx/cron-job /etc/cron.d
+sudo cp nginx/cron-job /etc/cron.d
 ```
 
 ## Versioning
@@ -119,6 +117,11 @@ docker compose run --rm --entrypoint="/bin/sh" -it certbot
 * Checking Certbot SSL certificates expiration date
 ```sh
 docker compose run --rm --entrypoint="certbot certificates" -it certbot
+```
+
+* Check cron logs
+```sh
+/var/log/cron.log
 ```
 
 ## Notes
