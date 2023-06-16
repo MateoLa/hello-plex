@@ -8,5 +8,4 @@ MAILTO=mateo.laino@gmail.com
 0 5 * * *  root /home/mateo/kingsmen/nginx/certs-renew.sh
 
 MAILTO=""
-# */2 * * * *  root echo "Hello World" >/dev/null 2>&1
-*/2 * * * *  root echo "Hello World" >/dev/stdout 2>&1
+*/2 * * * *  root echo "Hello World" > /dev/null 2>&1

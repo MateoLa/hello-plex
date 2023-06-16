@@ -24,6 +24,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 apt-get update
 # Install Docker and Docker Compose latest version
 apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# Install ssmtp to email cron job results 
+apt-get install -y ssmtp
 
 # Lock the root account to password-based access
 passwd --lock root

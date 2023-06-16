@@ -12,7 +12,9 @@ The example use a dockerized Plex server as the reverse application.
 
 * Your server (public host) has to have ssh access to github. (v2.0.0) [^Nt1]
 
-* Enable http and https traffic to the server.  (v2.0.0) [^Nt12]
+* Enable http and https traffic to the server.  (v2.0.0) [^Nt2]
+
+* For Gmail SMTP service to accept your credentials, you will need to set up and use an app password. To use app passwords in your Google account, you will also need to set up 2-step-verification. (v2.1.0)
 
 ## Usage
 
@@ -49,7 +51,7 @@ docker compose -f docker-compose-init.yml down
 
 5) Enable HTTPS 
 
-With initial certificates in place (in the nginx image) configure nginx SSH and generate new certificates.[^Nt2]
+With initial certificates in place (in the nginx image) configure nginx SSH and generate new certificates.[^Nt3]
 
 Run:
 
@@ -65,7 +67,7 @@ docker compose exec -it webserver nginx -s reload
 
 6) Test HTTPS. Secure Connect to your Plex server. 
 
-Go to ```https://your-domain``` [^Nt3]
+Go to ```https://your-domain``` [^Nt4]
 
 (The first connection could be done to ```https://your-domain/manage```)
 
@@ -77,6 +79,27 @@ Certbot certificates are valid for 90 days so we going to cron certificates rene
 
 ```sh
 sudo cp nginx/cron-job /etc/cron.d
+sudo service cron restart
+```
+
+Install ssmtp
+
+```sh
+sudo apt-get install ssmtp mailutils
+```
+
+Config ssmtp [^Nt5]
+
+```sh
+sudo nano /etc/ssmtp/ssmtp.conf
+
+root=test@gmail.com
+mailhub=smtp.gmail.com:587
+hostname=smtp.gmail.com:587
+UseSTARTTLS=YES
+AuthUser=test@gmail.com
+AuthPass=password
+FromLineOverride=YES
 ```
 
 ## Versioning
@@ -128,8 +151,10 @@ docker compose run --rm --entrypoint="certbot certificates" -it certbot
 
 [^Nt1]: In your server create the ssh key set ```ssh-keygen -f <path_to_home_directory>/.ssh/id_rsa -q -N ""```. Copy the public key (id_rsa.pub content) to github account settings in ```SSH and GPG keys```
 
-[^Nt12]: On Debian or Ubuntu ```ufw allow http``` and ```ufw allow https```
+[^Nt2]: On Debian or Ubuntu ```ufw allow http``` and ```ufw allow https```
 
-[^Nt2]: With nginx configured as a reverse proxy, the reverse application has to be up and running to get up the nginx. Otherwise nginx fail and the container will fall.
+[^Nt3]: With nginx configured as a reverse proxy, the reverse application has to be up and running to get up the nginx. Otherwise nginx fail and the container will fall.
 
-[^Nt3]: You can directly access the Plex server at ```http://your-domain:32400 or https://your-domain:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and ```http://your-domain or https://your-domain``` availability (without port specification) proves the correct web server configuration.
+[^Nt4]: You can directly access the Plex server at ```http://your-domain:32400 or https://your-domain:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and ```http://your-domain or https://your-domain``` availability (without port specification) proves the correct web server configuration.
+
+[^Nt5] Putting your gmail app password in ssmtp.conf is not ideal. We recommend to use a separate Gmail account, not your main account, for this.
