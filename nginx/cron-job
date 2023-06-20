@@ -3,9 +3,9 @@
 # HOME=/
 
 MAILTO=mateo.laino@gmail.com
-# run-parts
-# m h dom mon dow    user    command
-0 5 * * *  root /home/mateo/kingsmen/nginx/certs-renew.sh
+# m h dom mon dow    <user>    <command>
+0 5 * * *  root /home/mateo/hello-plex/certs-renew.sh
 
 MAILTO=""
+# Test cron running a job every two minutes
 */2 * * * *  root echo "Hello World" > /dev/null 2>&1
