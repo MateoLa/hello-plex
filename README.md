@@ -80,6 +80,7 @@ Certbot certificates are valid for 90 days so we are going to cron certificates 
 ```sh
 sudo cp nginx/cron-job /etc/cron.d
 sudo service cron restart
+sudo service cron reload
 ```
 
 Email cron-job results. A solution like ssmtp, sendmail, postfix or other has to be configured in your server.<br>
