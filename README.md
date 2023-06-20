@@ -75,12 +75,15 @@ Enjoy your Plex server!
 
 7) Certificates Renewal
 
-Certbot certificates are valid for 90 days so we going to cron certificates renewal.
+Certbot certificates are valid for 90 days so we are going to cron certificates renewal.
 
 ```sh
 sudo cp nginx/cron-job /etc/cron.d
 sudo service cron restart
 ```
+
+Email cron-job results. A solution like ssmtp, sendmail, postfix or other has to be configured in your server.<br>
+Ssmtp is the easiest.
 
 Install ssmtp
 
@@ -157,4 +160,4 @@ docker compose run --rm --entrypoint="certbot certificates" -it certbot
 
 [^Nt4]: You can directly access the Plex server at ```http://your-domain:32400 or https://your-domain:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and ```http://your-domain or https://your-domain``` availability (without port specification) proves the correct web server configuration.
 
-[^Nt5] Putting your gmail app password in ssmtp.conf is not ideal. We recommend to use a separate Gmail account, not your main account, for this.
+[^Nt5] Putting your gmail app password in ssmtp.conf is not ideal. We recommend to use a separate Gmail account, not your main account, for this. If your Gmail account is secured with two-factor authentication, you need to generate a unique App Password to use in ssmtp.conf
