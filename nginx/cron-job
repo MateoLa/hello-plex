@@ -4,8 +4,9 @@
 
 MAILTO=mateo.laino@gmail.com
 # m h dom mon dow    <user>    <command>
+# */2 * * * *  root echo "Hello Plex"
 0 5 * * *  root /home/mateo/hello-plex/certs-renew.sh
 
 MAILTO=""
 # Test cron running a job every two minutes
-*/2 * * * *  root echo "Hello World" > /dev/null 2>&1
+# */2 * * * *  root echo "Hello Plex" > /dev/null 2>&1
