@@ -78,6 +78,7 @@ Enjoy your Plex server!
 Certbot certificates are valid for 90 days so we are going to cron certificates renewal.
 
 ```sh
+sudo chmod +x nginx/certs-renew.sh
 sudo cp nginx/cron-job /etc/cron.d
 sudo service cron restart
 sudo service cron reload
