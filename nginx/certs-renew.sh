@@ -6,7 +6,8 @@ if [ -z "$EXITED_CONTAINERS" ]; then
 else
     docker rm $EXITED_CONTAINERS
 fi
- 
+
+cd /home/mateo/hello-plex 
 # renew certbot certificate
 docker compose run --rm certbot
 docker compose exec webserver nginx -s reload
