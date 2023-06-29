@@ -44,6 +44,7 @@ services:
     volumes:
       - certbot-acme:/var/www/letsencrypt/:rw
       - certbot-certs:/etc/letsencrypt/:rw
+      - ./log:/var/log/letsencrypt
     depends_on:
       - webserver
     command: certonly --webroot --staging --agree-tos --no-eff-email --email mlaino@gmail.com -w /var/www/letsencrypt -d etniapagana.com -d www.etniapagana.com
