@@ -162,4 +162,4 @@ docker compose run --rm --entrypoint="certbot certificates" -it certbot
 
 [^Nt4]: You can directly access the Plex server at ```http://your-domain:32400 or https://your-domain:32400``` (with nginx service available or not). Although, for the sake of the example we configure nginx and ```http://your-domain or https://your-domain``` availability (without port specification) proves the correct web server configuration.
 
-[^Nt5] Putting your gmail app password in ssmtp.conf is not ideal. We recommend to use a separate Gmail account, not your main account, for this. If your Gmail account is secured with two-factor authentication, you need to generate a unique App Password to use in ssmtp.conf
+[^Nt5]: Putting your gmail app password in ssmtp.conf is not ideal. We recommend to use a separate Gmail account, not your main account, for this. If your Gmail account is secured with two-factor authentication, you need to generate a unique App Password to use in ssmtp.conf
