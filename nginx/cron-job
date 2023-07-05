@@ -5,10 +5,9 @@
 MAILTO=mateo.laino@gmail.com
 # m h dom mon dow    <user>    <command>
 # */2 * * * *  root echo "Hello Plex"
-# */5 * * * *  root /home/mateo/hello-plex/nginx/certs-renew.sh
 # */5 * * * *  root cd /home/mateo/hello-plex && docker compose run --rm --entrypoint="certbot certificates" certbot
-0 6 * * *  root cd /home/mateo/hello-plex && docker compose run --rm --entrypoint="certbot certificates" certbot
-0 6 */5 * *  root /home/mateo/hello-plex/nginx/certs-renew.sh
+0 15 * * *  root cd /home/mateo/hello-plex && docker compose run --rm --entrypoint="certbot certificates" certbot
+0 14 */5 * *  root /home/mateo/hello-plex/nginx/certs-renew.sh
 
 MAILTO=""
 # */2 * * * *  root echo "Hello Plex" > /dev/null 2>&1
