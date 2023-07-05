@@ -39,6 +39,10 @@ passwd --delete $USERNAME
 # Expire the user's password immediately to force a change
 chage --lastday 0 $USERNAME
 
+# Set TimeZone
+# timedatectl list-timezones
+timedatectl set-timezone America/Montevideo
+
 # Create SSH directory for sudo user
 home_directory=$(eval echo ~$USERNAME)
 mkdir --parents $home_directory/.ssh
