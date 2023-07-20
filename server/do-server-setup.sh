@@ -1,3 +1,4 @@
+# Init-scritp
 #!/bin/bash
 set -euo pipefail
 
@@ -40,8 +41,10 @@ passwd --delete $USERNAME
 chage --lastday 0 $USERNAME
 
 # Set TimeZone
-# timedatectl list-timezones
 timedatectl set-timezone America/Montevideo
+# Although it can be checked and the time zone displayed by the server is the one configured,
+# cron does not take it until the server is restarted.
+# A reboot is needed for the TZ to take effect on the system
 
 # Create SSH directory for sudo user
 home_directory=$(eval echo ~$USERNAME)
@@ -52,7 +55,7 @@ if [ $COPY_AUTHORIZED_KEYS_FROM_ROOT = true ]; then
     cp /root/.ssh/authorized_keys $home_directory/.ssh
 fi
 
-# Create an ssh key pair for remote (GitHub) validation
+# Create an ssh key pair for remote access (GitHub validation)
 ssh-keygen -f $home_directory/.ssh/id_rsa -q -N ""
 
 # Add and verify GitHub in the known_hosts list
@@ -68,3 +71,6 @@ ufw allow OpenSSH
 ufw allow http
 ufw allow https
 ufw --force enable
+
+# Restart the server for some settings (TZ) to take effect.
+sudo shutdown -r now

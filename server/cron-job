@@ -12,6 +12,4 @@ MAILTO=mateo.laino@gmail.com
 MAILTO=""
 # */2 * * * *  root echo "Hello Plex" > /dev/null 2>&1
 
-# Remember that cron jobs run at UTC times.
-# If your server runs at UTC time then your scheduled jobs going to match your server time.
-# If your server is set to some TZ, then you need to convert your specific TZ to UTC time so that your jobs run at the correct time.
+# Cron jobs runs at your server TZ.
