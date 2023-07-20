@@ -129,6 +129,17 @@ openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -sha25
 sudo openssl dhparam -out /<absolute-path-to-your-app>/dhparam/dhparam-2048.pem 2048
 ```
 
+* Check server time/time-zone
+```sh
+timedatectl
+date
+```
+
+* Reboot your server
+```sh
+sudo shutdown -r now
+```
+
 * Remove Containers, Images and Volumes
 ```sh
 docker rm $(docker ps -a -q)
